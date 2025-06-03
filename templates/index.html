@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscador de Boletim</title>
+</head>
+<body>
+  <h2>Buscador de Boletins</h2>
+  <input id="cpf" type="text" placeholder="Digite seu CPF" />
+  <button onclick="buscar()">Buscar</button>
+  <div id="resultado"></div>
+
+  <script>
+    async function buscar() {
+      const cpf = document.getElementById("cpf").value;
+      const res = await fetch(`/buscar/${cpf}`);
+      const div = document.getElementById("resultado");
+
+      if (res.status === 200) {
+        const data = await res.json();
+        div.innerHTML = `<p>Nome: ${data.nome}</p><a href="${data.link}" target="_blank">Ver Boletim 📄</a>`;
+      } else {
+        div.innerHTML = "<p>CPF não encontrado</p>";
+      }
+    }
+  </script>
+</body>
+</html>
