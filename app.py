@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, send_from_directory, render_template
 import pandas as pd
+import os
 
 app = Flask(__name__, static_folder='boletins', template_folder='templates')
 
@@ -23,3 +24,8 @@ def buscar_boletim(cpf):
 @app.route("/boletins/<path:filename>")
 def boletins(filename):
     return send_from_directory("boletins", filename)
+
+# ✅ Este bloco abaixo é ESSENCIAL para rodar no Render
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
