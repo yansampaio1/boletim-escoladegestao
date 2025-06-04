@@ -7,16 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    :root {
-      font-size: 17px; /* AUMENTO GLOBAL DE FONTE */
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    :root { font-size: 17px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: "Roboto", sans-serif;
       background-color: #f5f6fa;
@@ -26,7 +18,6 @@
       align-items: start;
       min-height: 100vh;
     }
-
     .container {
       background: #fff;
       border-left: 8px solid #ed1c24;
@@ -36,33 +27,28 @@
       width: 100%;
       max-width: 750px;
     }
-
     .logo {
       max-width: 150px;
       margin: 0 auto 20px;
       display: block;
     }
-
     .icon {
       font-size: 30px;
       color: #ed1c24;
       margin-bottom: 15px;
       text-align: center;
     }
-
     h1 {
       font-size: 1.5rem;
       color: #2c1e4d;
       text-align: center;
       margin-bottom: 10px;
     }
-
     p {
       font-size: 1rem;
       color: #444;
       margin-bottom: 15px;
     }
-
     input {
       width: 100%;
       padding: 12px;
@@ -72,11 +58,7 @@
       margin-bottom: 20px;
       outline: none;
     }
-
-    input:focus {
-      border-color: #2c1e4d;
-    }
-
+    input:focus { border-color: #2c1e4d; }
     button {
       width: 100%;
       padding: 12px;
@@ -88,11 +70,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
-    button:hover {
-      background-color: #502984;
-    }
-
+    button:hover { background-color: #502984; }
     .info-box {
       background-color: #f0f4ff;
       border-radius: 10px;
@@ -102,43 +80,31 @@
       line-height: 1.6;
       margin-top: 25px;
     }
-
     .info-box h3 {
       margin-top: 0;
       color: #2c1e4d;
       font-size: 1.2rem;
     }
-
     .info-box ul {
       padding-left: 20px;
       margin: 10px 0;
     }
-
     .footer-note {
       margin-top: 20px;
       font-size: 0.95rem;
       color: #666;
       text-align: center;
     }
-
     @media (max-width: 600px) {
-      :root {
-        font-size: 16px;
-      }
-
-      .container {
-        padding: 20px 15px;
-      }
-
-      h1 {
-        font-size: 1.3rem;
-      }
+      :root { font-size: 16px; }
+      .container { padding: 20px 15px; }
+      h1 { font-size: 1.3rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="/static/logo.png" alt="Logo" class="logo" />
+    <img src="static/logo.png" alt="Logo" class="logo" />
     <div class="icon"><i class="fas fa-search"></i></div>
     <h1>Consulta de Boletim</h1>
     <p>Digite seu CPF <strong>sem pontos ou traços</strong> (apenas números):</p>
@@ -151,11 +117,9 @@
         Este boletim foi desenvolvido para facilitar o acompanhamento da sua trajetória no curso Escola de Gestão. 
         Nesta página <strong>você consegue visualizar com clareza o que já foi realizado e o que ainda precisa ser concluído</strong>.
       </p>
-
       <p>
         Caso você tenha pendências nos ciclos 1, 2 e 3, as etapas avaliativas poderão ser realizadas <strong>novamente durante o Ciclo 5, cujo início está previsto para 16 de junho</strong>.
       </p>
-
       <p><strong>Inspiração:</strong></p>
       <p>
         Elaine não entregou o vídeo no Ciclo 1 e foi reprovada na atividade de múltipla escolha no Ciclo 2. No Ciclo 5, ela poderá:
@@ -164,14 +128,12 @@
         <li>Entregar o vídeo e realizar a avaliação entre pares do Ciclo 1;</li>
         <li>Refazer a múltipla escolha, entregar o vídeo e fazer a avaliação em pares do Ciclo 2.</li>
       </ul>
-
       <p><strong>Importante:</strong></p>
       <ul>
         <li>Não é necessário se inscrever novamente para regularizar as pendências;</li>
         <li>O cronograma permanece alinhado com o Ciclo 5;</li>
         <li>Você pode concluir os Ciclos 1, 2 e 3 no seu ritmo.</li>
       </ul>
-
       <p>
         Volte a esta página sempre que quiser verificar sua situação e planejar os próximos passos.
       </p>
@@ -203,7 +165,8 @@
         alert("Digite um CPF válido com 11 dígitos, sem pontos ou traços.");
         return;
       }
-      window.open(`boletins/${cpf}.pdf`, "_blank");
+      const urlBase = "https://pub-2296c2351338495aba927157782e23c0.r2.dev";
+      window.open(`${urlBase}/${cpf}.pdf`, "_blank");
     }
   </script>
 </body>
