@@ -1,0 +1,12 @@
+# Ignorar arquivos grandes e binários
+*.rar
+*.zip
+*.pdf
+
+# Ignorar arquivos temporários e de sistema
+.DS_Store
+Thumbs.db
+
+# Se você estiver usando algum ambiente de build:
+node_modules/
+dist/
