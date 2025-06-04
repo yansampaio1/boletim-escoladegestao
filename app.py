@@ -25,6 +25,11 @@ def buscar_boletim(cpf):
 def boletins(filename):
     return send_from_directory("boletins", filename)
 
+# Serve arquivos estáticos da pasta 'templates' (onde está o index.html e logo.png)
+@app.route('/templates/<path:filename>')
+def templates_static(filename):
+    return send_from_directory('templates', filename)
+
 # ✅ Este bloco abaixo é ESSENCIAL para rodar no Render
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
