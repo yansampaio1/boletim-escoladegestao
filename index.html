@@ -147,15 +147,31 @@
       return resto === parseInt(cpf[10]);
     }
 
-    function abrirBoletim() {
-      const cpf = document.getElementById("cpf").value.trim();
-      if (!validarCPF(cpf)) {
-        alert("Digite um CPF válido com 11 dígitos, sem pontos ou traços.");
-        return;
-      }
-      const urlBase = "https://pub-2296c2351338495aba927157782e23c0.r2.dev";
-      window.open(`${urlBase}/${cpf}.pdf`, "_blank");
-    }
+    async function abrirBoletim() {
+      const cpf = document.getElementById("cpf").value.trim();
+      if (!validarCPF(cpf)) {
+        alert("Digite um CPF válido com 11 dígitos, sem pontos ou traços.");
+        return;
+      }
+
+      const urlBase = "https://pub-2296c2351338495aba927157782e23c0.r2.dev";
+      const urlBoletim = `${urlBase}/${cpf}.pdf`;
+
+      try {
+        const response = await fetch(urlBoletim, { method: 'HEAD' });
+
+        if (response.ok) {
+          window.open(urlBoletim, "_blank");
+        } else if (response.status === 404) {
+          window.location.href = 'manutencao.html';
+        } else {
+          alert("Ocorreu um erro ao buscar o boletim. Tente novamente mais tarde.");
+        }
+      } catch (error) {
+        console.error('Erro na requisição:', error);
+        alert("Ocorreu um erro ao buscar o boletim. Verifique sua conexão e tente novamente.");
+      }
+    }
   </script>
 </body>
 </html>
