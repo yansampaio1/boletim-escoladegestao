@@ -26,6 +26,7 @@
       padding: 30px 25px;
       width: 100%;
       max-width: 750px;
+      text-align: center;
     }
     .logo {
       max-width: 150px;
@@ -36,12 +37,10 @@
       font-size: 30px;
       color: #ed1c24;
       margin-bottom: 15px;
-      text-align: center;
     }
     h1 {
       font-size: 1.5rem;
       color: #2c1e4d;
-      text-align: center;
       margin-bottom: 10px;
     }
     p {
@@ -79,6 +78,7 @@
       padding: 20px;
       line-height: 1.6;
       margin-top: 25px;
+      text-align: left;
     }
     .info-box h3 {
       margin-top: 0;
@@ -93,7 +93,6 @@
       margin-top: 20px;
       font-size: 0.95rem;
       color: #666;
-      text-align: center;
     }
     @media (max-width: 600px) {
       :root { font-size: 16px; }
@@ -112,36 +111,21 @@
     <button onclick="abrirBoletim()">Buscar</button>
 
     <div class="info-box">
-<<<<<<< HEAD
       <h3>O que preciso fazer?</h3>
       <p>
         Este boletim foi desenvolvido para facilitar o acompanhamento da sua trajetória no curso Escola de Gestão. 
         Nesta página <strong>você consegue visualizar com clareza o que já foi realizado e o que ainda precisa ser concluído</strong>.
       </p>
       <p>
-        Caso você tenha pendências nos ciclos 1, 2 e 3 e não tenha conseguido saná-las durante a Nova Oportunidade, você poderá se inscrever no Refazimento. 
-        As inscrições serão realizadas no período de 28 de julho a 1º de agosto na SED - Secretaria Escolar Digital
+        Caso você tenha pendências nos ciclos 1, 2 e 3 e não tenha conseguido saná-las durante a Nova Oportunidade, 
+        você poderá se inscrever no Refazimento. As inscrições serão realizadas no período de 
+        28 de julho a 1º de agosto na SED - Secretaria Escolar Digital.
       </p>
-    
-      <p><strong>Estamos à disposição para apoiar você em toda a sua jornada.</strong><br>Equipe Escola de Gestão</p>
+      <p>
+        <strong>Estamos à disposição para apoiar você em toda a sua jornada.</strong><br />
+        Equipe Escola de Gestão
+      </p>
     </div>
-=======
-  <h3>O que preciso fazer?</h3>
-  <p>
-    Este boletim foi desenvolvido para facilitar o acompanhamento da sua trajetória no curso Escola de Gestão. 
-    Nesta página <strong>você consegue visualizar com clareza o que já foi realizado e o que ainda precisa ser concluído</strong>.
-  </p>
-  <p>
-    Caso você tenha pendências nos ciclos 1, 2 e 3 e não tenha conseguido saná-las durante a Nova Oportunidade, 
-    você poderá se inscrever no Refazimento. As inscrições serão realizadas no período de 
-    28 de julho a 1º de agosto na SED - Secretaria Escolar Digital.
-  </p>
-  <p>
-    <strong>Estamos à disposição para apoiar você em toda a sua jornada.</strong><br />
-    Equipe Escola de Gestão
-  </p>
-</div>
->>>>>>> ff9b8a1 (Atualiza texto da seção 'O que preciso fazer?')
 
     <p class="footer-note">Em caso de dúvidas, procure seu <strong>Orientador de Estudos</strong>.</p>
   </div>
@@ -168,8 +152,31 @@
         alert("Digite um CPF válido com 11 dígitos, sem pontos ou traços.");
         return;
       }
+
       const urlBase = "https://pub-2296c2351338495aba927157782e23c0.r2.dev";
-      window.open(`${urlBase}/${cpf}.pdf`, "_blank");
+      const pdfUrl = `${urlBase}/${cpf}.pdf`;
+
+      fetch(pdfUrl, { method: "HEAD" })
+        .then(res => {
+          if (res.ok) {
+            window.open(pdfUrl, "_blank");
+          } else {
+            mostrarManutencao();
+          }
+        })
+        .catch(err => {
+          mostrarManutencao();
+        });
+    }
+
+    function mostrarManutencao() {
+      const container = document.querySelector(".container");
+      container.innerHTML = `
+        <img src="static/logo.png" alt="Logo" class="logo" />
+        <h1>Boletim em Manutenção</h1>
+        <p>As notas estão passando por manutenção e em breve estarão disponíveis.</p>
+        <p>Estamos à disposição para apoiar você em toda a sua jornada.<br>Equipe Escola de Gestão</p>
+      `;
     }
   </script>
 </body>
